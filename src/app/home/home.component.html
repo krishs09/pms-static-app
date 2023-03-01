@@ -1,0 +1,74 @@
+<div class="row" *ngIf="!isRouterActive">
+    <div class="col-sm-4"></div>
+    <div class="p-3 col-sm-4">
+      <mat-card class="example-card shadow">
+        <mat-card-title-group>
+          <mat-card-title style="color: cadetblue;">Mr {{firstname}} {{lastname}}</mat-card-title>
+          <mat-card-subtitle>Male, 23</mat-card-subtitle>
+          <!-- <img mat-card-sm-image src="assets/default.png" > -->
+          <img mat-card-sm-image src="assets/default1.jpg" >
+        </mat-card-title-group>
+        <mat-card-content>
+            <div class="row g-2">
+                <div class="col-12">
+                    <div class="p-3 border bg-light">
+                      <span>Today's purpose of visit: <b style="color: crimson;">Routie check up</b></span>
+                    </div>
+                  </div>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <div class="row g-2">
+              <div class="p-3 col-6 textAlignCenter">
+                <button *ngIf="isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Add demographic details</button>
+                <button *ngIf="!isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Update demographic details</button>
+              </div>
+              <div class="p-3 col-6 textAlignCenter">
+                <button routerLink="/examination" (click)="isNavigated($event)" mat-raised-button color="primary">Add Examination details</button>
+              </div>
+            </div>
+          </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <div class="col-sm-4"></div>
+
+    <!-- Previous visits -->
+    <div class="row">
+      <div class="p-3 col-sm-1"></div>
+      <div class="p-3 col-sm-10">
+          <mat-card class="shadow">
+              <mat-card-title>
+                  <h1>Previous Visits</h1>
+              </mat-card-title>
+              <hr>
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Date of visit</th>
+                      <th scope="col">Purpose</th>
+                      <th scope="col">Examined by</th>
+                      <th scope="col">View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let apt of appointmentArray">
+                      <th scope="row">{{apt.appointmentId}}</th>
+                      <td>{{apt.appointmentDate}}</td>
+                      <td>{{apt.meetingTitle}}</td>
+                      <td>{{apt.examinedBy}}</td>
+                      <td *ngIf="apt.didExaminationhappened == 1"><button routerLink="/view-examination" mat-raised-button color="primary">View</button></td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+          </mat-card>
+      </div>
+      <div class="p-3 col-sm-1"></div>
+    </div>
+
+
+  </div>
+
+  

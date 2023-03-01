@@ -1,0 +1,58 @@
+.demographic-form{
+    padding: 5px;
+}
+
+.form-title{
+    text-align: center;
+    color:cadetblue;
+}
+
+.form-group{
+    padding-top: 5px;
+}
+
+.emrgncyLink{
+    color: crimson;
+    text-decoration: underline;
+    cursor: pointer;
+    top: 10px;
+}
+
+.alergyAndContactForm{
+    padding-top: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+
+  .mandatory{
+    border-block-color: red;
+  }
+
+  .dmg-pat-title{
+    display: block;
+    font-size: 24px;
+    font-weight: 500;
+    color: cadetblue;
+  }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+
+    .small-screen-img{
+        width: 30%;
+        float: right;
+    }
+}

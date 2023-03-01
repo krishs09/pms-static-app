@@ -1,0 +1,255 @@
+<div class="row ">
+      <div class="col-md-2" ></div>
+      <div class="col-md-8 demographic-details" >
+       <div class="card shadow">
+        <div class="card-header">
+         <h4 class="form-title"> Demographic Details</h4>
+        </div>
+          <div class="card-body">
+          
+            <form >
+              <div class="form-group row">
+                <div class="form-group col-md-8 col-sm-3 col-xs-3">
+                  <!-- <label for="inputEmail4">First Name</label>
+                  <input type="text" [(ngModel)]="firstName"  name="firstName"  class="form-control"
+                         id="inputEmail4"  readonly> -->
+                         <label class="dmg-pat-title">Mr. {{firstName}} {{lastName}}</label>
+                          <!-- <mat-label>Height</mat-label> -->
+                          <!-- <input matInput [(ngModel)]="firstName"  name="firstName" style="font-size: large;"> -->
+                          <!-- <input readonly type="text" [(ngModel)]="lastName"  name="lastName" id="inputPassword4"> -->
+                   
+                </div>
+                <!-- <div class="form-group col-md-4 col-sm-3 col-xs-3">
+                  <label for="inputPassword4">Last Name</label>
+                    <input readonly type="text" [(ngModel)]="lastName" class="form-control" name="lastName" id="inputPassword4">
+                </div> -->
+                <div class="col-md-2 col-sm-1">
+                </div>
+                <div class="col-md-2 col-sm-1  col-xs-1">
+                  <!-- <img src="assets/default.png" class="img-thumbnail" alt="Cinque Terre"> -->
+                  <img src="assets/default1.jpg" class="img-thumbnail small-screen-img" alt="Cinque Terre">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="form-group col-md-3">
+                  <label for="inputEmail4">Date of Birth</label>
+                  <input (change)="CalculateAge()" type="date" [(ngModel)]="date"
+                      name="date" class="form-control"  [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                
+                </div>
+                <div class="form-group col-md-1">
+                  <label for="inputPassword4">Age</label>
+                  <input readonly [(ngModel)]="age" type="text"   name="age" class="form-control" id="inputPassword4" >
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="inputEmail4">Gender</label>
+                 <select class="form-control"  [(ngModel)]="gender"  name="gender" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                  <option>Male</option>
+                  <option>Female</option>
+                 </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Race</label>
+                  <input type="text" [(ngModel)]="race"  name="race" class="form-control" id="inputPassword4" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                  <!-- <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Asian</label>
+                  </div> -->
+                  <!-- <section class="example-section">
+                    <div class="row">
+                      <div class="col-sm-3" *ngFor="let race of raceArray">
+                        <mat-checkbox  class="example-margin"  value="{{race.id}}"
+                           [(ngModel)]="race.ischecked" name="Asian" (change)="getselectedOptions()">{{race.name}}</mat-checkbox>
+                      </div>
+                    </div> 
+                  
+                  </section>-->
+                 
+                </div>
+              </div>
+              <div class="form-group row">
+                
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Ethinicity</label>
+                  <input type="text" [(ngModel)]="ethinicity"  name="ethinicity" class="form-control" id="inputEmail4" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                </div>
+                <!-- <div class="form-group col-md-6">
+                  <label >Languages Known</label>
+                  <select class="form-control" [(ngModel)]="languagesKnown" name="languagesKnown">
+                    <option>English</option>
+                    <option>Hindi</option>
+                   </select>
+                </div> -->
+              </div>
+              <div class="form-group row">
+                <div class="form-group col-md-4">
+                  <label for="inputEmail4">Email</label>
+                  <input readonly type="email" [(ngModel)]="email"  name="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="inputPassword4">Contact</label>
+                  <input type="number" [(ngModel)]="contact"  name="contact" class="form-control" id="inputPassword4" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Home Address</label>
+                  <input type="text" [(ngModel)]="homeAddress"  name="homeAddress" class="form-control" id="inputEmail4" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                </div>
+               
+              </div>
+              <div class="form-group row alergyAndContactForm">
+                <div class="col-md-6">
+                  <!-- <fieldset class="form-group"> -->
+                    <!-- <div class="row"> -->
+                      <!-- <legend class="col-form-label col-sm-4 pt-0">Any Allergy</legend> -->
+                      <!-- <div class="col-sm-8"> -->
+                        <div class="form-check">
+                        <span>Any Allergy: </span>  <input (change)="showAllergyForm($event)" type="checkbox" data-width="65"
+                         data-height="2" data-toggle="switchbutton" unchecked data-onlabel="Yes" data-offlabel="No" data-onstyle="success" data-offstyle="danger">
+                      </div>
+                      <!-- </div> -->
+                    <!-- </div> -->
+                  <!-- </fieldset> -->
+                </div>
+                <div class="form-group col-md-3 mandatory">
+                  <span class="emrgncyLink" data-bs-toggle="modal" data-bs-target="#exampleModal">Add emergency contact</span>
+                </div>
+               
+                <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Emergency Contact Details</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form >
+                            <div class="form-group row">
+                              <div class="form-group col-md-6">
+                                <label for="inputPassword4">First Name</label>
+                                <input type="text" [(ngModel)]="emgFirstname" name="emgFirstname"  class="form-control"
+                                   id="inputPassword4" >
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputEmail4">Last Name</label>
+                                <input type="text" [(ngModel)]="emgLastname" name="emgLastname"  class="form-control" id="inputEmail4" >
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="form-group col-md-4">
+                                <label for="inputPassword4">Relationship</label>
+                                <select class="form-control" [(ngModel)]="relationship" name="relationship" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                                  <option>Father</option>
+                                  <option>Mother</option>
+                                  <option>Sister</option>
+                                  <option>Brother</option>
+                                  <option>Cousin</option>
+                                  <option>Relative</option>
+                                  <option>Friend</option>
+                                  <option>Other</option>
+                                 </select>
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" [(ngModel)]="emgEmail" name="emgEmail"  class="form-control" id="inputEmail4" >
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="inputPassword4">Contact</label>
+                                <input type="number" [(ngModel)]="emgContact" name="emgContact"  class="form-control" id="inputPassword4" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="form-group col-md-12">
+                                <label for="inputEmail4">Address</label>
+                                <input type="email" [(ngModel)]="emgAddress" name="emgAddress"  class="form-control" id="inputEmail4" [ngClass]=" isFormValid == true ? '' : 'mandatory'">
+                              </div>
+                              
+                            </div>
+                            <div class="form-group row">
+                              <div class="form-group col-md-6 col-sm-3 col-xs-3">
+                                <label>Access needed? &nbsp;&nbsp;</label> <label class="radio-inline">
+                                  <input type="radio" value="1" (onChange)="isAccessNeeded($event)" name="accessNeeded" checked>Yes
+                                </label>&nbsp;
+                                <label class="radio-inline">
+                                  <input type="radio" value="0" (onChange)="isAccessNeeded($event)" name="accessNeeded">No
+                                </label>
+                                </div>
+                            </div>
+                          </form>
+                          
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" mat-raised-button color="primary" (click)="mergeEmergencyDetails()" data-bs-dismiss="modal">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngIf="!hasAllergy" class="col-md-3">
+                    <button style="float: right;" type="submit" (click)="onSubmit()"  mat-raised-button color="primary">Save</button>
+                  </div>
+              </div>
+            </form>
+          </div>
+       </div>
+      </div>
+      <div class="col-md-2" ></div>
+    </div>
+
+    <div class="row allergy-form" *ngIf="hasAllergy">
+      <div class="col-md-2" ></div>
+      <div class="col-md-8 demographic-details" >
+       <div class="card">
+        <div class="card-header">
+          <h4 class="form-title"> Allergy Details</h4> 
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+              <!-- <label for="inputEmail4">Allergy Type</label> -->
+              <select class="form-control" [(ngModel)]="allergyType" name="allergyType">
+                <option>Select allergy type</option>
+                <option>Food</option>
+                <option>Drugs</option>
+                <option>Environment</option>
+                <option>Odour</option>
+               </select>
+            </div>
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+              <!-- <label for="inputEmail4">Allergy Name</label> -->
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Allergy Name" [(ngModel)]="allergyName" name="allergyName">
+            </div>
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+              <!-- <label for="inputEmail4">Allergy Description</label> -->
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Allergy Description" [(ngModel)]="allergyDescrp" name="allergyDescrp">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+              <!-- <label for="inputEmail4">Allergy Clinical Info</label> -->
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Clinical info" [(ngModel)]="allergyCinfo" name="allergyCinfo">
+            </div>
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+                <label>Is Fatal: &nbsp;&nbsp;</label> <label class="radio-inline">
+                  <input type="radio" value="1" (change)="isFatal($event)" name="optradio" checked>Yes
+                </label>&nbsp;
+                <label class="radio-inline">
+                  <input type="radio" value="0" (change)="isFatal($event)" name="optradio">No
+                </label>
+          </div>
+        </div>
+       </div>
+       <div class="card-footer">
+          <div class="form-group row">
+                <div class="col-sm-10">
+                  <button style="float: right;" type="submit" (click)="onSubmit()"  mat-raised-button color="primary">Save All</button>
+                </div>
+              </div>
+       </div>
+       </div>
+       <div class="col-md-2" ></div>
+    </div>
+    </div>
+

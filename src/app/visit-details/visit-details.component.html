@@ -1,0 +1,228 @@
+<div class="row p-3">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+    <mat-card class="shadow">
+      <span style="font-size: medium;">   Vital Sign</span>
+        <mat-card-content>
+          <div class="row g-2">
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Height</mat-label>
+                <input matInput [(ngModel)]="height" name="height">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Weight</mat-label>
+                <input matInput [(ngModel)]="weight" name="weight">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Blood Pressure</mat-label>
+                <input matInput [(ngModel)]="bloodPressure" name="bloodPressure">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Body Temperature</mat-label>
+                <input matInput [(ngModel)]="bodyTemp" name="bodyTemp">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Blood Pressure Type</mat-label>
+                <mat-select [(ngModel)]="bloodPressureType" name="bloodPressureType">
+                  <mat-option value="Systolic">Systolic</mat-option>
+                  <mat-option value="Diastolic">Diastolic</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Respiration Rate</mat-label>
+                <input matInput [(ngModel)]="respirationRate" name="respirationRate">
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+    <mat-card class="shadow">
+      <span style="font-size: medium;"> Diagnosis</span>
+        <mat-card-content>
+          <div class="row g-2">
+            <div class="col-sm-2">
+              <mat-form-field appearance="fill" class="width-100-percent">
+                <mat-label>Category</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let cat of diagnossiCategories" [value]="cat.value">
+                    {{cat.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-sm-2">
+              <mat-form-field appearance="fill" class="width-100-percent">
+                <mat-label>Diagnosis Code</mat-label>
+                <input matInput [(ngModel)]="diagnosisCode" name="diagnosisCode">
+              </mat-form-field>
+            </div> -->
+            <div class="col-sm-10">
+              <mat-form-field appearance="fill" class="width-100-percent">
+                <mat-label>Description</mat-label>
+                <!-- <input matInput [(ngModel)]="description" name="description"> -->
+                <mat-chip-list #chipList aria-label="Diagnosis selection">
+                  <mat-chip
+                    *ngFor="let diagnosis of selectedDiagnosis"
+                    (removed)="remove(diagnosis)">
+                    {{diagnosis}}
+                    <button matChipRemove>
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip>
+                  <input
+                    placeholder="New diagnosis..."
+                   
+                    #fruitInput
+                    [formControl]="fruitCtrl"
+                    [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                  <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                    {{fruit}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+     
+    </mat-card>
+  </div>
+  <div class="col-sm-2">
+    <!-- <button (click)="submitf()">Submit</button> -->
+  </div>
+</div>
+<div class="row p-3">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+    <mat-card class="shadow">
+        <span style="font-size: medium;"> Procedure Details</span>    
+        <mat-card-content>
+          <div class="row g-2">
+            <div class="col-sm-2">
+              <mat-form-field appearance="fill" class="width-100-percent">
+                <mat-label>Procedure Code</mat-label>
+                <input matInput [(ngModel)]="procedureCode" name="procedureCode">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-10">
+              <mat-form-field appearance="fill" class="width-100-percent">
+                <mat-label>Description</mat-label>
+                <!-- <input matInput [(ngModel)]="prdescription" name="prdescription"> -->
+                <input type="text"
+                placeholder="Pick one"
+                aria-label="Number"
+                matInput
+                [matAutocomplete]="pauto">
+                <mat-autocomplete #pauto="matAutocomplete" [displayWith]="displayFnProcedure.bind(this)">
+                  <mat-option *ngFor="let procedure of procedureMasterArray "  [value]="procedure">
+                    {{procedure.procedureDescription}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+<div class="row p-3">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+    <mat-card class="shadow">
+      <span style="font-size: medium;">   Medication Details</span>
+        <mat-card-content>
+          <div class="row g-2">
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Id</mat-label>
+                <input matInput [(ngModel)]="drugId" name="drugId">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Name</mat-label>
+                <!-- <input matInput [(ngModel)]="drugName" name="drugName"> -->
+                <input type="text"
+                placeholder="Pick one"
+                aria-label="Number"
+                matInput
+                [matAutocomplete]="mauto">
+                <mat-autocomplete #mauto="matAutocomplete" [displayWith]="displayFnMedication.bind(this)">
+                  <mat-option *ngFor="let medication of medicationMasterArray "  [value]="medication">
+                    {{medication.drugName}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Generic Name</mat-label>
+                <input matInput [(ngModel)]="drugGenericName" name="drugGenericName">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Brand</mat-label>
+                <input matInput [(ngModel)]="drugBrand" name="drugBrand">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Form</mat-label>
+                <input matInput  [(ngModel)]="drugForm" name="drugForm">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Stregth</mat-label>
+                <input matInput  [(ngModel)]="drugStrength" name="drugStrength">
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+<div class="row p-3">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6 textAlignCenter">
+    <button  mat-raised-button color="primary" (click)="onSubmit()">Add Examination details</button>
+  </div>
+  <div class="col-sm-3"></div>
+</div>

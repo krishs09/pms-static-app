@@ -1,0 +1,163 @@
+<div class="row g-2">
+    <div class="p-3 col-sm-1"></div>
+    <div class="p-3 col-sm-10">
+        <mat-card class="shadow">
+            <span style="font-size: medium;"> Vital Sign</span>
+              <mat-card-content>
+                <div class="row g-2">
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Height</mat-label>
+                      <input matInput [(ngModel)]="vitalSignObj.height" name="height">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Weight</mat-label>
+                      <input matInput [(ngModel)]="vitalSignObj.weight" name="weight">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Blood Pressure</mat-label>
+                      <input matInput [(ngModel)]="vitalSignObj.bloodPressure" name="bloodPressure">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row g-2">
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Body Temperature</mat-label>
+                      <input matInput [(ngModel)]="vitalSignObj.bodyTemp" name="bodyTemp">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Blood Pressure Type</mat-label>
+                      <input matInput [(ngModel)]="vitalSignObj.bloodPressureType" name="bloodPressureType">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Respiration Rate</mat-label>
+                      <input matInput [(ngModel)]="vitalSignObj.respirationRate" name="respirationRate">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-card-content>
+              <mat-card-footer>
+              </mat-card-footer>
+          </mat-card>
+    </div>
+    <div class="p-3 col-sm-1"></div>
+</div>
+<div class="row g-2">
+    <div class="p-3 col-sm-1"></div>
+    <div class="p-3 col-sm-10">
+        <mat-card class="shadow">
+          <span style="font-size: medium;">
+             Diagnosis Details:
+          </span>
+            <mat-card-content>
+              <div class="row g-2" *ngFor="let diagnosis of diagnosisObjArray">
+                <div class="col-sm-2">
+                  <mat-form-field appearance="fill" class="width-100-percent">
+                    <mat-label>Code</mat-label>
+                    <input matInput [value]="diagnosis.diagnosisCode">
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-10">
+                  <mat-form-field appearance="fill" class="width-100-percent">
+                    <mat-label>Description</mat-label>
+                    <input matInput [value] = "diagnosis.description">
+                  </mat-form-field>
+                </div>
+              </div>
+              
+            </mat-card-content>
+          </mat-card>
+    </div>
+    <div class="p-3 col-sm-1"></div>
+</div>
+<div class="row g-2">
+    <div class="p-3 col-sm-1"></div>
+    <div class="p-3 col-sm-10">
+      <mat-card class="shadow">
+        <span style="font-size: medium;">
+           Procedure Details:
+        </span>
+          <mat-card-content>
+            <div class="row g-2">
+              <div class="col-sm-2">
+                <mat-form-field appearance="fill" class="width-100-percent">
+                  <mat-label>Code</mat-label>
+                  <input matInput [value]="procedureObj.procedureCode">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-10">
+                <mat-form-field appearance="fill" class="width-100-percent">
+                  <mat-label>Description</mat-label>
+                  <input matInput [value] = "procedureObj.description">
+                </mat-form-field>
+              </div>
+            </div>
+            
+          </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="p-3 col-sm-1"></div>
+</div>
+<div class="row g-2">
+    <div class="p-3 col-sm-1"></div>
+    <div class="p-3 col-sm-10">
+      <mat-card class="shadow">
+        <span style="font-size: medium;">
+           Medication Details:
+        </span>
+        <mat-card-content>
+          <div class="row g-2">
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug ID</mat-label>
+                <input matInput [value]="medicationObj.drugId" name="drugId">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Name</mat-label>
+                <input matInput [value]="medicationObj.drugName" name="drugName">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Generic Name</mat-label>
+                <input matInput [value]="medicationObj.drugGenericName" name="drugGenericName">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Form</mat-label>
+                <input matInput [value]="medicationObj.drugForm" name="drugForm">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Brand</mat-label>
+                <input matInput [value]="medicationObj.drugBrand" name="drugBrand">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="fill">
+                <mat-label>Drug Strength</mat-label>
+                <input matInput [value]="medicationObj.drugStrength" name="drugStrength">
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="p-3 col-sm-1"></div>
+</div>
+
