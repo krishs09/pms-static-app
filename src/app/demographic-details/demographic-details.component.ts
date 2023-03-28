@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -17,10 +17,15 @@ export class DemographicDetailsComponent implements OnInit {
 
   existginPatientDemogrphic:DemographicDetails = new DemographicDetails();
 isNewPatient:boolean=false;
+
+  patientIdFromSession = sessionStorage.getItem('patientId');
+
   constructor(private formBuilder: FormBuilder,private patientDetailsService: PatientDetailsService
     ,private router: Router,private _snackBar: MatSnackBar){}
 
   ngOnInit(): void {
+
+    console.log('Patient ID from srvc: '+this.patientDetailsService.patientId_srvc);
 this.isNewPatient = this.patientDetailsService.isNewPatient_srvc;
     if(this.patientDetailsService.demographicDetail != null){
 
@@ -36,9 +41,6 @@ this.isNewPatient = this.patientDetailsService.isNewPatient_srvc;
 
     }
   }
-  //GET FROM OTHER SERVICE
-  hardCodedPatientId=this.patientDetailsService.hardCodedPatientId;
-  hardCodedAppointmentId=this.patientDetailsService.hardCodedAppointmentId;
 
   emergencyContactForm:any;
   submitted = false;
@@ -193,6 +195,7 @@ this.isNewPatient = this.patientDetailsService.isNewPatient_srvc;
     this.demographicObj.contact= this.contact;
     this.demographicObj.homeAddress= this.homeAddress;
     this.demographicObj.anyAllergy= this.hasAllergy;
+    
 
     this.emergencyContactInfoObj.firstName = this.emgFirstname;
     this.emergencyContactInfoObj.lastName = this.emgLastname;
@@ -208,7 +211,7 @@ this.isNewPatient = this.patientDetailsService.isNewPatient_srvc;
     this.allergyObj.allergyClinicalInfo = this.allergyCinfo;
     this.allergyObj.isFatal = this.isAlergyFatal;
 
-    this.demographicRequestBody.patientId = this.hardCodedPatientId;
+    this.demographicRequestBody.patientId = this.patientIdFromSession;
     this.demographicRequestBody.demographicDetails = this.demographicObj;
     this.demographicRequestBody.emergencyContact = this.emergencyContactInfoObj;
     this.demographicRequestBody.allergy.push(this.allergyObj);
@@ -216,7 +219,6 @@ this.isNewPatient = this.patientDetailsService.isNewPatient_srvc;
     if(this.validateEmergencyForm()){
     
     console.log("RWEQUEST BODY: "+JSON.stringify(this.demographicRequestBody));
-    
 
         this.patientDetailsService.saveDemographicDetails(this.demographicRequestBody)
               .subscribe(data=>{

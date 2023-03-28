@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="p-3 col-sm-1"></div>
+    <div class="p-3 col-sm-10">
+        <mat-card class="shadow">
+            <mat-card-title>
+                <h1>Patient Appointments list</h1>
+            </mat-card-title>
+            <hr>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Appointment ID</th>
+                    <th scope="col">Meeting Title</th>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Appointment With</th>
+                    <th scope="col">Appointment Date</th>
+                    <th scope="col">Apointment Time</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let apt of appointmentsList">
+                    <th scope="row"></th>
+                    <td>{{apt.appointmentId}} </td>
+                    <td>{{apt.meetingTitle}}</td>
+                    <td>{{apt.patientId}}</td>
+                    <td>{{apt.appointment_with}}</td>
+                    <td>{{apt.appointmentDate | date}}</td>
+                    <td>{{apt.appointmentTime  }}</td>
+                    <td ><button (click)="patientExamination(apt)" mat-raised-button color="primary">Examine</button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </mat-card>
+    </div>
+    <div class="p-3 col-sm-1"></div>
+  </div>

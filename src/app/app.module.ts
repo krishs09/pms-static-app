@@ -26,6 +26,7 @@ import {MatAutocomplete,MatAutocompleteModule} from '@angular/material/autocompl
 import {MatChipInputEvent,MatChipsModule} from '@angular/material/chips';
 import {MatChipInput} from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { AppointmentsComponent } from './appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatIconModule } from '@angular/material/icon';
     VisitDetailsComponent,
     HeaderComponent,
     HomeComponent,
-    ViewExaminationComponent
+    ViewExaminationComponent,
+    AppointmentsComponent
   ],
   imports: [
     BrowserModule,

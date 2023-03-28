@@ -9,11 +9,13 @@ import { UserPatient } from 'src/model/UserPatient';
 })
 export class PatientDetailsService {
 
-  hardCodedPatientId=1;
-  hardCodedAppointmentId=1
 
-userDetailObj :UserPatient = new UserPatient();
-isNewPatient_srvc:boolean=false
+  patientId_srvc:any;
+  physicianId_srvc:any;
+  appointmentId_srvc:any;
+
+  userDetailObj :UserPatient = new UserPatient();
+  isNewPatient_srvc:boolean=false
   private DEMOGRAPHIC_BASE_URL: string = 'http://localhost:8081/demographic_details';
   private VISIT_DETAIL_BASE_URL: string = 'http://localhost:8082/visit_details';
 
@@ -50,4 +52,7 @@ isNewPatient_srvc:boolean=false
     return this.http.get(this.VISIT_DETAIL_BASE_URL+'/getallappointment',{params:{patientId:patientId}});
   }
 
+  public getAllAppointmentsForPhysician(physicianId:any){
+    return this.http.get(this.VISIT_DETAIL_BASE_URL+'/getallappointmentForPhysician',{params:{physicianId:physicianId}});
+  }
 }

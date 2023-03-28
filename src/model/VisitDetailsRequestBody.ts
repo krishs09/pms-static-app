@@ -6,6 +6,7 @@ import { VitalSigns } from "./VitalSigns";
 export class VisitDetailsRequestBody{
 
     patientId:any;
+    physicianId:any;
     appointmentId:any;
     vitalSign: VitalSigns = new VitalSigns();
     diagnosis:Diagnosis []= [];

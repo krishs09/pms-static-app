@@ -43,11 +43,6 @@ export class VisitDetailsComponent implements OnInit {
  // allDiagnosisList: string[] = [];
  
   //SHOULD GET FROM OTHER SERVICE, HOW IS CALLING THIS SERVICE
-   
-  
-  //SHOULD GET FROM OTHER SERVICE, HOW IS CALLING THIS SERVICE
-  hardCodedPatientId=this.patientDetailService.hardCodedPatientId;
-  hardCodedAppointmentId=this.patientDetailService.hardCodedAppointmentId;
 
   //VITAL SIGN DATA
   height:any;
@@ -103,6 +98,10 @@ export class VisitDetailsComponent implements OnInit {
 
   @ViewChild('fruitInput')
   fruitInput!: ElementRef<HTMLInputElement>; 
+
+  aptIdFromSession = sessionStorage.getItem('appointmentId');
+  patientIdFromSession = sessionStorage.getItem('patientId');
+  physicianIdFromSession = sessionStorage.getItem('physicianId');
 
  constructor(private formBuilder: FormBuilder,private patientDetailService: PatientDetailsService,
   private router: Router,private _snackBar: MatSnackBar) { 
@@ -237,12 +236,13 @@ displayFnMedication(item:any){
       this.medicationObj.drugName = this.drugName;
       this.medicationObj.drugStrength = this.drugStrength;
 
-      this.visitDetailRequest.patientId = this.hardCodedPatientId;
-      this.visitDetailRequest.appointmentId = this.hardCodedAppointmentId;
+      this.visitDetailRequest.patientId = this.patientIdFromSession;
+      this.visitDetailRequest.appointmentId = this.aptIdFromSession;
       this.visitDetailRequest.vitalSign = this.vitalSignObj;
       this.visitDetailRequest.diagnosis = this.diagnosisObjArray;
       this.visitDetailRequest.procedure = this.procedureObj;
       this.visitDetailRequest.medication = this.medicationObj;
+      this.visitDetailRequest.physicianId = this.physicianIdFromSession;
 
   console.log("Examination data: "+JSON.stringify(this.visitDetailRequest));
 

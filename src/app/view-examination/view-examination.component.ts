@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Diagnosis } from 'src/model/Diagnosis';
 import { Medication } from 'src/model/Medication';
 import { Procedure } from 'src/model/Procedure';
@@ -12,10 +13,6 @@ import { PatientDetailsService } from '../patient-details.service';
   styleUrls: ['./view-examination.component.css']
 })
 export class ViewExaminationComponent implements OnInit {
-
-  //SHOULD GET FROM OTHER SERVICE, HOW IS CALLING THIS SERVICE
-  hardCodedPatientId=this.patientDetailsService.hardCodedPatientId;
-  hardCodedAppointmentId=this.patientDetailsService.hardCodedAppointmentId;
   
   vitalSignObj: VitalSigns = new VitalSigns();
   diagnosisObjArray:Diagnosis []= [];
@@ -23,11 +20,22 @@ export class ViewExaminationComponent implements OnInit {
   medicationObj:Medication = new Medication();
   visitBody:VisitDetailsRequestBody  = new VisitDetailsRequestBody
 
+  aptIdFromSession = sessionStorage.getItem('appointmentId');
+  patientIdFromSession = sessionStorage.getItem('patientId');
+  physicianIdFromSession = sessionStorage.getItem('physicianId');
 
-  constructor(private patientDetailsService: PatientDetailsService) { }
+  appointmentId_viewExamination:any;
+
+
+  constructor(private patientDetailsService: PatientDetailsService, private route: ActivatedRoute) {
+
+    this.route.queryParams.subscribe(params => {
+      this.appointmentId_viewExamination = params["appointmentId"];
+    });
+   }
 
   ngOnInit(): void {
-    this.patientDetailsService.getVisitdetail(this.hardCodedPatientId,this.hardCodedAppointmentId)
+    this.patientDetailsService.getVisitdetail(this.patientIdFromSession,this.appointmentId_viewExamination)
     .subscribe(data=>{
       this.visitBody = JSON.parse(JSON.stringify(data));
       console.log("Visit data: "+JSON.stringify(data));

@@ -1,4 +1,4 @@
-export class Appointment{
+export class AppointmentHistory{
    appointmentId:any;
 	 meetingTitle:any;
 	patientId:any;

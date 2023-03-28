@@ -12,7 +12,7 @@
             <div class="row g-2"> 
                 <div class="col-12">
                     <div class="p-3 border bg-light">
-                      <span>Today's purpose of visit: <b style="color: crimson;">Routie check up</b></span>
+                      <span>Today's purpose of visit: <b style="color: crimson;">{{AppointmentObj.meetingTitle}}</b></span>
                     </div>
                   </div>
             </div>
@@ -23,8 +23,11 @@
                 <button *ngIf="isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Add demographic details</button>
                 <button *ngIf="!isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Update demographic details</button>
               </div>
-              <div class="p-3 col-6 textAlignCenter">
-                <button routerLink="/examination" (click)="isNavigated($event)" mat-raised-button color="primary">Add Examination details</button>
+              <div *ngIf="AppointmentObj.meetingTitle != 'Consultation'" class="p-3 col-6 textAlignCenter">
+                <button  routerLink="/examination" (click)="isNavigated($event)" mat-raised-button color="primary">Add Examination details</button>
+              </div>
+              <div *ngIf="AppointmentObj.meetingTitle == 'Consultation'" class="p-3 col-6 textAlignCenter">
+                <button  routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Only Consultation</button>
               </div>
             </div>
           </mat-card-footer>
@@ -58,7 +61,8 @@
                       <td>{{apt.appointmentDate}}</td>
                       <td>{{apt.meetingTitle}}</td>
                       <td>{{apt.examinedBy}}</td>
-                      <td *ngIf="apt.didExaminationhappened == 1"><button routerLink="/view-examination" mat-raised-button color="primary">View</button></td>
+                      <!-- <td *ngIf="apt.didExaminationhappened == 1"><button routerLink="/view-examination" mat-raised-button color="primary">View</button></td> -->
+                      <td *ngIf="apt.didExaminationhappened == 1"><button (click)="viewExamination(apt)" mat-raised-button color="primary">View</button></td>
                     </tr>
                     
                   </tbody>
@@ -67,8 +71,6 @@
       </div>
       <div class="p-3 col-sm-1"></div>
     </div>
-
-
   </div>
 
   
