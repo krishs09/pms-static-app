@@ -27,6 +27,16 @@ import {MatChipInputEvent,MatChipsModule} from '@angular/material/chips';
 import {MatChipInput} from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { TimepipePipe } from './pipes/timepipe.pipe';
+import { AmpmpipePipe } from './pipes/ampmpipe.pipe';
+import { BookappointmentsComponent } from './bookappointments/bookappointments.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { RegistrationloginComponent } from './registrationlogin/registrationlogin.component';
+import { PatientregistrationComponent } from './patientregistration/patientregistration.component';
+import { EmployeeregistrationComponent } from './employeeregistration/employeeregistration.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +46,13 @@ import { AppointmentsComponent } from './appointments/appointments.component';
     HeaderComponent,
     HomeComponent,
     ViewExaminationComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    TimepipePipe,
+    AmpmpipePipe,
+    BookappointmentsComponent,
+    RegistrationloginComponent,
+    PatientregistrationComponent,
+    EmployeeregistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -57,8 +73,12 @@ import { AppointmentsComponent } from './appointments/appointments.component';
     MatInputModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatChipsModule
-    
+    MatChipsModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
+
   ],
   providers: [],
 

@@ -20,14 +20,14 @@
         <mat-card-footer>
             <div class="row g-2">
               <div class="p-3 col-6 textAlignCenter">
-                <button *ngIf="isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Add demographic details</button>
-                <button *ngIf="!isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Update demographic details</button>
+                <button *ngIf="isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-stroked-button color="primary">Add demographic details</button>
+                <button *ngIf="!isNewPatient" routerLink="/demographic" (click)="isNavigated($event)" mat-stroked-button color="primary">Update demographic details</button>
               </div>
               <div *ngIf="AppointmentObj.meetingTitle != 'Consultation'" class="p-3 col-6 textAlignCenter">
-                <button  routerLink="/examination" (click)="isNavigated($event)" mat-raised-button color="primary">Add Examination details</button>
+                <button  routerLink="/examination" (click)="isNavigated($event)" mat-stroked-button color="primary">Add Examination details</button>
               </div>
               <div *ngIf="AppointmentObj.meetingTitle == 'Consultation'" class="p-3 col-6 textAlignCenter">
-                <button  routerLink="/demographic" (click)="isNavigated($event)" mat-raised-button color="primary">Only Consultation</button>
+                <button  routerLink="/demographic" (click)="isNavigated($event)" mat-stroked-button color="primary">Only Consultation</button>
               </div>
             </div>
           </mat-card-footer>

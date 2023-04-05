@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PatientDetailsService } from '../patient-details.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  loggedInEmpname:any;
+
+  constructor(private router:Router,private patientService:PatientDetailsService) {
+
+    console.log("loggedInEmpname in constructor: "+sessionStorage.getItem('loggedInEmpName_session'));
+   }
 
   ngOnInit(): void {
+    console.log("loggedInEmpname in onint: "+sessionStorage.getItem('loggedInEmpName_session'));
   }
-
+  logout(){
+    sessionStorage.clear();
+    console.log('Apt id afetre clear: '+sessionStorage.getItem('appointmentId'));
+    console.log('Emp name: '+sessionStorage.getItem('loggedInEmpName_session'));
+    this.router.navigate(['/']);
+    
+  }
 }

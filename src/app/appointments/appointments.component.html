@@ -2,9 +2,16 @@
     <div class="p-3 col-sm-1"></div>
     <div class="p-3 col-sm-10">
         <mat-card class="shadow">
-            <mat-card-title>
-                <h1>Patient Appointments list</h1>
-            </mat-card-title>
+        
+                <mat-card-title>
+                    
+                    <div class="listcontainer">
+                        <div><h1>Patient Appointments list</h1></div>
+                        <div class="fill"></div>
+                        <div><button routerLink="/new-appointment" mat-stroked-button color="primary">New Appointment</button></div>
+                    </div>
+                </mat-card-title>
+                
             <hr>
             <table class="table table-hover">
                 <thead>
@@ -26,9 +33,9 @@
                     <td>{{apt.meetingTitle}}</td>
                     <td>{{apt.patientId}}</td>
                     <td>{{apt.appointment_with}}</td>
-                    <td>{{apt.appointmentDate | date}}</td>
-                    <td>{{apt.appointmentTime  }}</td>
-                    <td ><button (click)="patientExamination(apt)" mat-raised-button color="primary">Examine</button></td>
+                    <td>{{apt.appointmentDate | timepipe}}</td>
+                    <td>{{apt.appointmentTime}}</td>
+                    <td ><button (click)="patientExamination(apt)" mat-stroked-button color="primary">Examine</button></td>
                   </tr>
                 </tbody>
               </table>

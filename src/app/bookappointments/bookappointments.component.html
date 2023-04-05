@@ -1,0 +1,140 @@
+<div class="row allergy-form" >
+    <div class="col-md-1" ></div>
+    <div class="col-md-10 demographic-details" >
+     <div class="card">
+      <div class="card-header">
+        <h2 class="form-title" style="text-align: center;"> Book Appointment</h2> 
+      </div>
+      <div class="card-body">
+        <div class="form-group col-md-4 col-sm-3 col-xs-3">
+            <label>Existing Patient?: <span style="color: red;font-size: larger;">*</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-radio-group [(ngModel)]="existingPatient"   aria-label="Select an option">
+                <mat-radio-button [value]="'1'"  >Yes</mat-radio-button>&nbsp;
+                <mat-radio-button [value]="'0'">No</mat-radio-button>
+              </mat-radio-group>
+      </div>
+      <hr>
+        <div *ngIf="existingPatient==1" class="form-group row">
+          <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            <!-- <label for="inputEmail4">Allergy Name</label> -->
+         <input type="text" class="form-control" id="inputEmail4" placeholder="First Name" [(ngModel)]="firstname" name="firstname">
+          </div>
+          <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            <!-- <label for="inputEmail4">Allergy Name</label> -->
+         <input type="number" class="form-control" id="inputEmail4" placeholder="Mobile" [(ngModel)]="mobile" name="mobile">
+          </div>
+          <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            <!-- <label for="inputEmail4">Allergy Description</label> -->
+            <!-- <label for="inputEmail4">Gender</label> -->
+            <select class="form-control"  [(ngModel)]="gender" name="gender">
+            <option value="gender">Gender</option>
+             <option value="Male">Male</option>
+             <option value="Female">Female</option>
+             <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            <!-- <label for="inputEmail4">Allergy Clinical Info</label> -->
+           <!-- Date of Birth:  <input type="text" class="form-control" id="inputEmail4" placeholder="DOB"  name="allergyCinfo"> -->
+           <button   type="button"  mat-raised-button color="primary" (click)="getExistingPatientDetails()"> Search </button>
+        </div>
+     </div>
+     <hr>
+     <div *ngIf="patientFound==1" class="form-group row">
+        <div class="form-group col-md-1 col-sm-3 col-xs-3">
+             {{existingPatientDetails.user_id}}
+        </div>
+        <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            {{existingPatientDetails.firstname}}
+        </div>
+        <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            {{existingPatientDetails.lastname}}
+        </div>
+        <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            {{existingPatientDetails.email}}
+        </div>
+        <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            {{existingPatientDetails.mobile}}
+        </div>
+        <div class="form-group col-md-2 col-sm-3 col-xs-3">
+            {{existingPatientDetails.gender}}
+        </div>
+     </div>
+     <div *ngIf="patientFound==0" class="form-group row"><b>No Records Found</b></div>
+     <hr *ngIf="patientFound==1">
+     <div *ngIf="patientFound==1" >
+        <div class="form-group row">
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+               <input type="text" class="form-control" [(ngModel)]="purpose" placeholder="Meeting Title">
+            </div>
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+               <select class="form-control" [(ngModel)]="selectedPhysician">
+                    <option *ngFor="let p of allPhysician " value="{{p.employeeId}}">{{p.employeeName}}</option>
+               </select>
+            </div>
+         </div>
+         <hr *ngIf="patientFound==1">
+        <div class="form-group row">
+            <div class="form-group col-md-4 col-sm-3 col-xs-3">
+                Select Date:  <input type="date" [min]="minDate" (change)="getAvailableTimeSlots()" [(ngModel)]="selectedDate">
+            </div>
+         </div>
+         <hr *ngIf="patientFound==1">
+         <div *ngIf="availableTimeSlots.length > 0" class="form-group row">
+            <div class="form-group col-md-1 col-sm-3 col-xs-3 " >
+                Available Slots:
+            </div>
+
+            <div class="form-group col-md-10 col-sm-3 col-xs-3 " >
+               
+                <!-- <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" >
+                    <mat-button-toggle  *ngFor="let slots of availableTimeSlots" value="slots.value">{{slots.name}}</mat-button-toggle>
+                </mat-button-toggle-group>  -->
+                <div class="btn-group p-1" role="group" *ngFor="let slots of availableTimeSlots; index as i">
+                    <button disabled="{{slots.disabled}}" [ngClass]="{'selectedTimeBackground-btn':i==timeSlotBtnBckgrnd}" (click)="getSelectedTime(slots,i)" type="button"  value="slots.value" mat-stroked-button color="primary">
+                        {{slots.name}}
+                    </button>
+                </div>
+            </div>
+         </div>
+         <hr>
+         <div style="text-align: center;" class="form-group row">
+            <div  class="col-md-5"></div>
+            <div  class="col-md-2">
+                <button (click)="saveAppointment()"  type="button" mat-raised-button color="accent">
+                    Book
+                </button>
+            </div>
+            <div  class="col-md-5"></div>
+         </div>
+     </div>
+    
+     
+     <div *ngIf="existingPatient==0" class="form-group row">
+        <div class="form-group col-md-4 col-sm-3 col-xs-3">
+          <!-- <label for="inputEmail4">Allergy Clinical Info</label> -->
+         Please Register here: 
+          <button style="float: right" type="submit" routerLink="/registration"  mat-stroked-button color="primary">New Registration</button>
+        </div>
+    </div>
+    <hr>
+    <!-- <div mdbDropdown class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          aria-expanded="false"
+          mdbDropdownToggle
+        >
+          Dropdown button
+        </button>
+        <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div> -->
+     </div>
+    
+  </div>
+  </div>

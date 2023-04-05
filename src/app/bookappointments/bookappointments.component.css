@@ -1,0 +1,7 @@
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+
+  .selectedTimeBackground-btn{
+    background: greenyellow;
+  }

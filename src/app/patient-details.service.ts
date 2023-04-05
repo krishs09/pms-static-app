@@ -14,10 +14,12 @@ export class PatientDetailsService {
   physicianId_srvc:any;
   appointmentId_srvc:any;
 
+
   userDetailObj :UserPatient = new UserPatient();
   isNewPatient_srvc:boolean=false
   private DEMOGRAPHIC_BASE_URL: string = 'http://localhost:8081/demographic_details';
   private VISIT_DETAIL_BASE_URL: string = 'http://localhost:8082/visit_details';
+  private REGISTRATION_AND_LOGIN_URL :string = 'http://localhost:8083/registrationAndLogin';
 
   demographicDetail:DemographicDetails=new DemographicDetails();
   
@@ -54,5 +56,25 @@ export class PatientDetailsService {
 
   public getAllAppointmentsForPhysician(physicianId:any){
     return this.http.get(this.VISIT_DETAIL_BASE_URL+'/getallappointmentForPhysician',{params:{physicianId:physicianId}});
+  }
+
+  public getAppointmentTimeSlots(date:any){
+    return this.http.get(this.VISIT_DETAIL_BASE_URL+'/getTimeSlots',{params:{date:date}});
+  }
+
+  public getExistingPatient(firstname:any,mobile:any,gender:any){
+    return this.http.get(this.VISIT_DETAIL_BASE_URL+'/findExistingPatient',{params:{firstname:firstname,mobile:mobile,gender:gender}});
+  }
+
+  public getAllPhysician(){
+    return this.http.get(this.DEMOGRAPHIC_BASE_URL+'/getAllPhysician');
+  }
+
+  public bookAppointment(bookAppointmetnObj:any){
+    return this.http.post(this.VISIT_DETAIL_BASE_URL+'/saveAppointment',bookAppointmetnObj);
+  }
+
+  public validateLogin(email:any,password:any){
+    return this.http.get(this.REGISTRATION_AND_LOGIN_URL+'/validateLoginCredentials',{params:{email:email,password:password}});
   }
 }

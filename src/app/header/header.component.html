@@ -3,13 +3,36 @@
     <div class="col-sm-4" >
       <h2  routerLink="/" class="logo">CT General Hospital</h2>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-2">
+      <h3>{{loggedInEmpname}}</h3>
+    </div>
+    <div class="col-sm-6">
      
-      <span class="logout">
+      <!-- <span class="logout">
+        
        <button>About us</button> &nbsp;
-        <button>Logout</button>
-      </span>
+         <button  (click)="logout()">Logout</button> 
+      </span> -->
+      <div mdbDropdown class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          aria-expanded="false"
+          mdbDropdownToggle
+        >
+          Dropdown button
+        </button>
+        <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+
+      
     
+  </div>
   </div>
 
 

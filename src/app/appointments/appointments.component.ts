@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Appointments } from 'src/model/Appointments';
+import { Employee } from 'src/model/Employee';
 import { PatientDetailsService } from '../patient-details.service';
 
 @Component({
@@ -12,17 +13,31 @@ export class AppointmentsComponent implements OnInit {
 
   appointmentsList:Appointments []=[];
   appointmentObj : Appointments = new Appointments();
+   empObjFromSession :Employee = new Employee();
 
-  constructor(private patientDetailService:PatientDetailsService,private router:Router) { }
+
+  constructor(private patientDetailService:PatientDetailsService,private router:Router) { 
+   
+  }
+
+  
 
   ngOnInit(): void {
 
-    let physicianId =1; // Get from login
-    this.patientDetailService.getAllAppointmentsForPhysician(physicianId)
-    .subscribe(data=>{
-      this.appointmentsList = JSON.parse(JSON.stringify(data));
-      console.log(data)
-    });
+    // this.empObjFromSession = JSON.parse(JSON.stringify(sessionStorage.getItem('empObj')));
+
+    // console.log('Employee obj in session: '+sessionStorage.getItem('empObj'));
+    
+    // console.log('Employee Obj: '+this.empObjFromSession);
+    // console.log("Emp detaislL "+this.empObjFromSession.gender);
+    
+    
+        let physicianId =sessionStorage.getItem('loggedInEmpId_session'); // Get from login
+        this.patientDetailService.getAllAppointmentsForPhysician(physicianId)
+        .subscribe(data=>{
+          this.appointmentsList = JSON.parse(JSON.stringify(data));
+          console.log(data)
+        });
   }
 
   patientExamination(e:any){
