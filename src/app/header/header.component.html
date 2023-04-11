@@ -1,19 +1,44 @@
 
   <div class="row p-2"  id ="menu">
     <div class="col-sm-4" >
-      <h2  routerLink="/" class="logo">CT General Hospital</h2>
+      <h2  routerLink="/appointments" class="logo">CT General Hospital</h2>
     </div>
     <div class="col-sm-2">
-      <h3>{{loggedInEmpname}}</h3>
+      <!-- <h3>{{loggedInEmpname_session}}</h3> -->
     </div>
     <div class="col-sm-6">
-     
-      <!-- <span class="logout">
+     <div class="row"> 
+      <div *ngIf="loggedInEmpname_session == null" class="col-md-4">
+        <button >About us</button> 
+      </div>
+    
+      <div *ngIf="loggedInEmpname_session != null" class="col-md-4">
+        <h3 class="name" >Welcome! <span><b>{{loggedInEmpname_session}}</b></span></h3>
+      </div>
+      <div *ngIf="loggedInEmpname_session != null" class="col-md-4">
+        <button  (click)="logout()">Logout</button> 
+      </div>
+     </div>
+      <span class="logout">
         
-       <button>About us</button> &nbsp;
-         <button  (click)="logout()">Logout</button> 
-      </span> -->
-      <div mdbDropdown class="dropdown">
+      
+         
+        
+      </span>
+      
+      <!-- <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+        </ul>
+      </div> -->
+      <!-- <div mdbDropdown class="dropdown">
         <button
           class="btn btn-primary dropdown-toggle"
           type="button"
@@ -28,10 +53,8 @@
           <li><a class="dropdown-item" href="#">Another action</a></li>
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
-      </div>
+      </div> -->
 
-      
-    
   </div>
   </div>
 

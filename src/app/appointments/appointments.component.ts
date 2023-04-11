@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Appointments } from 'src/model/Appointments';
 import { Employee } from 'src/model/Employee';
 import { PatientDetailsService } from '../patient-details.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-appointments',
@@ -15,14 +16,18 @@ export class AppointmentsComponent implements OnInit {
   appointmentObj : Appointments = new Appointments();
    empObjFromSession :Employee = new Employee();
 
+   //@ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   constructor(private patientDetailService:PatientDetailsService,private router:Router) { 
    
   }
 
+
   
 
   ngOnInit(): void {
+
+ 
 
     // this.empObjFromSession = JSON.parse(JSON.stringify(sessionStorage.getItem('empObj')));
 
@@ -36,7 +41,7 @@ export class AppointmentsComponent implements OnInit {
         this.patientDetailService.getAllAppointmentsForPhysician(physicianId)
         .subscribe(data=>{
           this.appointmentsList = JSON.parse(JSON.stringify(data));
-          console.log(data)
+          console.log(data);
         });
   }
 

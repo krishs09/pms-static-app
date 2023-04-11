@@ -1,40 +1,77 @@
-<div class="container">
+
+    
     <div class="form-group row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div [hidden]="submitted">
-                <h1>Hero Form</h1>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="card shadow">
+            <div class="card-header">
+              <h1>Patient Registration Form</h1>
+            </div>
+            <div class="card-body">
+              <div [hidden]="submitted">
+                
                 <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
-                  <div class="form-group">
-                    <label for="name">First Name</label>
-                    <input type="text" class="form-control" id="firstname"
-                           required
-                           [(ngModel)]="model.firstname" name="firstname"
-                           >
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label for="name">First Name</label>
+                      <input type="text" class="form-control" id="firstname"
+                             required
+                             [(ngModel)]="model.firstname" name="firstname"
+                             >
+                    </div>
+                    <div class="col-md-6">
+                      <label for="name">Last Name</label>
+                      <input type="text" class="form-control" id="firstname"
+                             required
+                             [(ngModel)]="model.lastname" name="lastname"
+                             >
+                    </div>
                    
                   </div>
-            
-                  <div class="form-group">
-                    <label for="alterEgo">Email</label>
-                    <input type="text" class="form-control" id="alterEgo"
-                           [(ngModel)]="model.email" name="email">
+                  <div class="form-group row p-2">
+                    <div class="col-md-6">
+                      <label for="name">Date of Birth</label>
+                      <input type="date" class="form-control" id="dateOfBirth"
+                             required
+                             [(ngModel)]="model.dateOfBirth" name="dateOfBirth"
+                             >
+                    </div>
+                    <div class="col-md-6">
+                      <label for="alterEgo">Email</label>
+                      <input type="text" class="form-control" id="alterEgo"
+                             [(ngModel)]="model.email" name="email">
+                    </div>
                   </div>
             
-                  <div class="form-group">
-                    <label for="power">Hero Power</label>
-                    <select class="form-control" id="power"
-                            required
-                            [(ngModel)]="model.gender" name="gender"
-                           >
-                      <option *ngFor="let pow of gender" [value]="pow">{{pow}}</option>
-                    </select>
-                   
+                  <div class="form-group row p-2">
+                    <div class="col-md-6">
+                      <label for="alterEgo">Mobile</label>
+                    <input type="number" class="form-control" id="alterEgo"
+                           [(ngModel)]="model.mobile" name="mobile" minlength="10" max="10">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="power">Gender</label>
+                      <select class="form-control" id="power"
+                              required
+                              [(ngModel)]="model.gender" name="gender"
+                             >
+                        <option *ngFor="let pow of gender" [value]="pow">{{pow}}</option>
+                      </select>
+                    </div>
+                    
                   </div>
-            
-                  <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
-                  <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+                  <div class="form-group row p-2">
+                    <div class="col-md-6">
+                      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+                      <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+                    </div>
+                  </div>
+                 
                 </form>
               </div>
+            </div>
+          </div>
+            
             
                <div [hidden]="!submitted">
                 <h2>You submitted the following:</h2>
@@ -54,7 +91,6 @@
                 <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
               </div> 
         </div>
-        <div class="col-md-3"> </div>
+        <div class="col-md-4"> </div>
     </div>
     
-  </div>

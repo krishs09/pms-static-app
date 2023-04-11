@@ -77,4 +77,12 @@ export class PatientDetailsService {
   public validateLogin(email:any,password:any){
     return this.http.get(this.REGISTRATION_AND_LOGIN_URL+'/validateLoginCredentials',{params:{email:email,password:password}});
   }
+
+  public newPatientRegistration(patientObj:any){
+    return this.http.post(this.REGISTRATION_AND_LOGIN_URL+'/new-patient',patientObj);
+  }
+
+  public EmployeeRegistration(employeeObj:any){
+    return this.http.post(this.REGISTRATION_AND_LOGIN_URL+'/new-employee',employeeObj);
+  }
 }

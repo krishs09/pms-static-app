@@ -37,6 +37,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { RegistrationloginComponent } from './registrationlogin/registrationlogin.component';
 import { PatientregistrationComponent } from './patientregistration/patientregistration.component';
 import { EmployeeregistrationComponent } from './employeeregistration/employeeregistration.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EmployeeregistrationComponent } from './employeeregistration/employeere
     BookappointmentsComponent,
     RegistrationloginComponent,
     PatientregistrationComponent,
-    EmployeeregistrationComponent
+    EmployeeregistrationComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

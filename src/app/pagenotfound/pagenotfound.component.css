@@ -1,0 +1,10 @@
+.background{
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    background-position: center center;
+    background-attachment: fixed;
+    /* background: url(/assets/default.png) center center cover no-repeat fixed; */
+   /* background-image: url(/assets/default.png ); */
+   height: 90%;
+   width: 100%;
+}

@@ -9,7 +9,7 @@ import { PatientDetailsService } from '../patient-details.service';
 })
 export class HeaderComponent implements OnInit {
 
-  loggedInEmpname:any;
+  loggedInEmpname_session:any;
 
   constructor(private router:Router,private patientService:PatientDetailsService) {
 
@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.loggedInEmpname_session = sessionStorage.getItem('loggedInEmpName_session');
     console.log("loggedInEmpname in onint: "+sessionStorage.getItem('loggedInEmpName_session'));
   }
   logout(){
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
     console.log('Apt id afetre clear: '+sessionStorage.getItem('appointmentId'));
     console.log('Emp name: '+sessionStorage.getItem('loggedInEmpName_session'));
     this.router.navigate(['/']);
+    this.ngOnInit();
     
   }
 }

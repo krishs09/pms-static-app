@@ -1,9 +1,10 @@
 export class Employee{
 
-	employeeId:any;
-    employeeName:any;
-	role:any;
-	gender:any;
-	email:any;
-	password:any
+	public employeeId:any;
+    public employeeName:any;
+	public role:any;
+	public gender:any;
+	public email:any;
+	public password:any
+
 }

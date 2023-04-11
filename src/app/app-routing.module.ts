@@ -9,6 +9,8 @@ import { PatientregistrationComponent } from './patientregistration/patientregis
 import { RegistrationloginComponent } from './registrationlogin/registrationlogin.component';
 import { ViewExaminationComponent } from './view-examination/view-examination.component';
 import { VisitDetailsComponent } from './visit-details/visit-details.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: 'home',component: HomeComponent },
@@ -18,9 +20,14 @@ const routes: Routes = [
   { path: 'view-examination', component: ViewExaminationComponent },
   { path: 'new-appointment', component: BookappointmentsComponent },
   { path: 'login', component: RegistrationloginComponent },
-  { path: 'appointments', component: AppointmentsComponent },
+  {  path: 'appointments', 
+    component: AppointmentsComponent,
+    canActivate:[AuthGuard]
+  },
   { path: 'registration', component: PatientregistrationComponent},
   { path: 'employee-registration', component: EmployeeregistrationComponent},
+  { path: '404', component: PagenotfoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({
