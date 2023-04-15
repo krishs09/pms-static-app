@@ -24,6 +24,7 @@ loggedInEmpGender:any;
   constructor(private patientService: PatientDetailsService,private router:Router) { }
 
   ngOnInit(): void {
+
   }
 
   login(){
@@ -39,13 +40,14 @@ loggedInEmpGender:any;
         sessionStorage.setItem('loggedInEmpRole_session',this.empDetails.role);
         sessionStorage.setItem('loggedInEmpGender_session',this.empDetails.gender);
         this.router.navigate(['/appointments']);
-      //  this.empDetails = JSON.parse(JSON.stringify(result));
-       
-      // sessionStorage.setItem('empObj',JSON.stringify(result)); // Doesnt work for object
+
+      //  this.empDetails = JSON.parse(JSON.stringify(result)); dont uncomment
+      // sessionStorage.setItem('empObj',JSON.stringify(result)); // Doesnt work for object //dont uncomment
 
       },
       error:(e)=>{
-        alert("Invalid email or password");
+      //  alert("Invalid email or password");
+      this.router.navigate(['/appointments']);
       }
     })
   }

@@ -56,7 +56,7 @@
                       <th scope="col">View</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody *ngIf="appointmentArray.length > 0">
                     <tr *ngFor="let apt of appointmentArray">
                       <th scope="row">{{apt.appointmentId}}</th>
                       <td>{{apt.appointmentDate}}</td>
@@ -64,6 +64,17 @@
                       <td>{{apt.examinedBy}}</td>
                       <!-- <td *ngIf="apt.didExaminationhappened == 1"><button routerLink="/view-examination" mat-raised-button color="primary">View</button></td> -->
                       <td *ngIf="apt.didExaminationhappened == 1"><button (click)="viewExamination(apt)" mat-raised-button color="primary">View</button></td>
+                    </tr>
+                  </tbody>
+
+                  <tbody *ngIf="appointmentArray.length == 0">
+                    <tr *ngFor="let apt of dummyPreviousAppointmentData">
+                      <th scope="row">{{apt.appointmentId}}</th>
+                      <td>{{apt.appointmentDate}}</td>
+                      <td>{{apt.meetingTitle}}</td>
+                      <td>{{apt.examinedBy}}</td>
+                      <!-- <td *ngIf="apt.didExaminationhappened == 1"><button routerLink="/view-examination" mat-raised-button color="primary">View</button></td> -->
+                      <td ><button (click)="viewExamination(apt)" mat-raised-button color="primary">View</button></td>
                     </tr>
                     
                   </tbody>

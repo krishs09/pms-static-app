@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'login', component: RegistrationloginComponent },
   {  path: 'appointments', 
     component: AppointmentsComponent,
-    canActivate:[AuthGuard]
+  //  canActivate:[AuthGuard]
   },
   { path: 'registration', component: PatientregistrationComponent},
   { path: 'employee-registration', component: EmployeeregistrationComponent},

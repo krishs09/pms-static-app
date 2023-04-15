@@ -27,14 +27,27 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr *ngFor="let apt of appointmentsList">
+                <tbody *ngIf="appointmentsList.length > 0">
+                  <tr  *ngFor="let apt of appointmentsList">
                     <th scope="row"></th>
                     <td>{{apt.appointmentId}} </td>
                     <td>{{apt.meetingTitle}}</td>
                     <td>{{apt.patientId}}</td>
                     <td>{{apt.appointment_with}}</td>
                     <td>{{apt.appointmentDate | timepipe}}</td>
+                    <td>{{apt.appointmentTime}}</td>
+                    <td ><button (click)="patientExamination(apt)" mat-stroked-button color="primary">Examine</button></td>
+                  </tr>
+                </tbody>
+
+                <tbody *ngIf="appointmentsList.length == 0">
+                  <tr  *ngFor="let apt of dummyData">
+                    <th scope="row"></th>
+                    <td>{{apt.appointmentId}} </td>
+                    <td>{{apt.meetingTitle}}</td>
+                    <td>{{apt.patientId}}</td>
+                    <td>{{apt.appointment_with}}</td>
+                    <td>{{apt.appointmentDate}}</td>
                     <td>{{apt.appointmentTime}}</td>
                     <td ><button (click)="patientExamination(apt)" mat-stroked-button color="primary">Examine</button></td>
                   </tr>

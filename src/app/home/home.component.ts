@@ -30,6 +30,11 @@ export class HomeComponent implements OnInit {
   patientIdFromSession = sessionStorage.getItem('patientId');
   physicianIdFromSession = sessionStorage.getItem('physicianId');
 
+  dummyPreviousAppointmentData=
+  [
+    {appointmentId:123,appointmentDate:'23-09-2023',meetingTitle:'Dummy',examinedBy:'Dr Lisa Ray'}
+  ]
+
  
 
   constructor(private patientDetailService:PatientDetailsService,private router:Router,

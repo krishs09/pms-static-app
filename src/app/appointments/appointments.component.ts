@@ -16,6 +16,15 @@ export class AppointmentsComponent implements OnInit {
   appointmentObj : Appointments = new Appointments();
    empObjFromSession :Employee = new Employee();
 
+   dummyData = [
+    { appointmentId: 123, meetingTitle: 'Surgery' ,patientId:3423,appointment_with:'Dr. Simon Jones',
+      appointmentDate:'Today',appointmentTime:'3:00 PM'},
+      { appointmentId: 434, meetingTitle: 'Routine check up' ,patientId:54623,appointment_with:'Dr. Lisa Ray',
+      appointmentDate:'Tomorrow',appointmentTime:'1:00 PM'},
+      { appointmentId: 125553, meetingTitle: 'Kidney transplant' ,patientId:64,appointment_with:'Dr. Kishna Yadav',
+      appointmentDate:'23-09-2023',appointmentTime:'8:30 PM'},
+  ]
+
    //@ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
   constructor(private patientDetailService:PatientDetailsService,private router:Router) { 
